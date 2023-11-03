@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618705088849",
+    "project_id": "get-truck-87e0d",
+    "storage_bucket": "get-truck-87e0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618705088849:android:26fdefa633a57081fd2370",
+        "android_client_info": {
+          "package_name": "com.gettruck.gettruck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618705088849-bvm3sorspoc1vb8uatje00ha0trs9at2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_fuWQ6p80H1EdcSq5k1TX41170pTeuOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618705088849-bvm3sorspoc1vb8uatje00ha0trs9at2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
