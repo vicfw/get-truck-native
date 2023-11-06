@@ -17,14 +17,14 @@ export default function App() {
 
   usePushNotification();
 
-  // useEffect(() => {
-  //   MobileAds()
-  //     .initialize()
-  //     .then((adapterStatuses) => {
-  //       console.log("Initialization complete!");
-  //       // Initialization complete!
-  //     });
-  // }, []);
+  useEffect(() => {
+    MobileAds()
+      .initialize()
+      .then((adapterStatuses) => {
+        console.log("Initialization complete!");
+        // Initialization complete!
+      });
+  }, []);
 
   if (!isLoadingComplete) {
     return null;

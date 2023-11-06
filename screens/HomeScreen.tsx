@@ -284,7 +284,7 @@ export default function HomeScreen({
             </View>
             {/* Hero Section */}
             <View className="d-flex justify-center items-center py-2">
-              {/* <BannerAd
+              <BannerAd
                 unitId={
                   Platform.OS === "android"
                     ? "ca-app-pub-5191028754472941/3312863357"
@@ -292,7 +292,7 @@ export default function HomeScreen({
                 }
                 size={BannerAdSize.LARGE_BANNER}
                 requestOptions={{ requestNonPersonalizedAdsOnly: true }}
-              /> */}
+              />
             </View>
             <View
               className={`justify-center items-center py-4 px-4 mx-1 rounded-md ${themeRenderer(
