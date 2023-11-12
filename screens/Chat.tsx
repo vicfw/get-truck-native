@@ -69,8 +69,8 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
     // typing Indicator logic
   };
 
-  const sendMessage = async () => {
-    if (message.length) {
+  const sendMessage = async (text?: string) => {
+    if (text?.length || message.length) {
       setMessage("");
 
       // send message to api
@@ -79,7 +79,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
         "new message",
         {
           chatId: route.params.chatId,
-          content: message,
+          content: text ?? message,
           senderId: user.id,
           createdAt: Date.now(),
           _id: Date.now(),
@@ -95,7 +95,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
           scrollViewRef?.current?.scrollToEnd({ animated: true });
           try {
             const result = await createMessage({
-              content: message,
+              content: text ?? message,
               chatId: route.params.chatId,
             });
 
@@ -108,7 +108,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
               title: user.name
                 ? `Message form ${user.name}`
                 : "You Have new Message",
-              body: message,
+              body: text ?? message,
             };
 
             const response = await fetch(
@@ -135,6 +135,10 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
         }
       );
     }
+  };
+
+  const handleSuggestionPress = () => {
+    sendMessage("Hi, is this available ?");
   };
 
   useEffect(() => {
@@ -192,7 +196,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
   }, [messagesData]);
 
   return (
-    <View className="flex-1" style={{ paddingBottom: inset.bottom }}>
+    <View className="flex-1 relative" style={{ paddingBottom: inset.bottom }}>
       {/* ad information */}
       <Pressable
         onPress={() =>
@@ -316,12 +320,19 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
             onChangeText={typingHandler}
             value={message}
             returnKeyType="send"
-            onEndEditing={sendMessage}
+            onEndEditing={() => sendMessage()}
           />
-          <TouchableOpacity className="ml-3" onPress={sendMessage}>
+          <TouchableOpacity className="ml-3" onPress={() => sendMessage()}>
             <Icon type="feather" name="send" />
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          className="absolute -top-10 px-3 py-2 rounded-xl mx-2"
+          style={{ backgroundColor: Colors.main }}
+          onPress={handleSuggestionPress}
+        >
+          <Text className="text-white">Hi, is this available ?</Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
   );

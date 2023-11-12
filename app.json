@@ -2,7 +2,7 @@
   "expo": {
     "name": "Ge Truck",
     "slug": "truckMobile",
-    "version": "1.3.8",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/_icon.png",
     "owner": "vic_fw",
@@ -30,23 +30,26 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.gettruck.gettruck",
-      "buildNumber":"5",
+      "buildNumber": "9",
       "config": {
         "googleMapsApiKey": "AIzaSyBsWzC6CM-M-T0WNam9zx7BxaJNrxQQKqo"
-        }
+      }
     },
     "android": {
-      "googleServicesFile": "./google-services.json",      
+      "googleServicesFile": "./google-services.json",
       "package": "com.gettruck.gettruck",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyB1M19w37PFoTRSXi38NwARR01OThOTbxQ"
         }
-      }
+      },
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
