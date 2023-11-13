@@ -38,12 +38,26 @@ import { HomeStackScreen } from "./HomeStack";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { PostAdStackScreen } from "./PostAdStack";
 import { ProfileStackScreen } from "./ProfileStack";
+import * as SplashScreen from "expo-splash-screen";
 
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  React.useEffect(() => {
+    (async () => {
+      try {
+        console.log("Preventing auto hide of splash screen...");
+        await SplashScreen.preventAutoHideAsync();
+        console.log("Splash screen auto hide prevented successfully.");
+
+        // Rest of your code...
+      } catch (e) {
+        console.error("Error preventing splash screen auto hide:", e);
+      }
+    })();
+  }, []);
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
