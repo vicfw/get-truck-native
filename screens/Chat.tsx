@@ -298,7 +298,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
       )}
       {/* footer ,input section */}
       <KeyboardAvoidingView
-        // keyboardVerticalOffset={90}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : undefined}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         enabled
       >
