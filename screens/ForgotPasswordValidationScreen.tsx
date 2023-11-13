@@ -16,10 +16,10 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import Colors from "../constants/Colors";
 import { useForgotPasswordValidationMutation } from "../redux/services/userServices";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles, {
   ACTIVE_CELL_BG_COLOR,

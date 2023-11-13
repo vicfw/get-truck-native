@@ -5,7 +5,6 @@ export const useTogglePasswordVisibility = () => {
   const [rightIcon, setRightIcon] = useState<"eye-outline" | "eye-off-outline">(
     "eye-outline"
   );
-
   const handlePasswordVisibility = () => {
     if (rightIcon === "eye-outline") {
       setRightIcon("eye-off-outline");
@@ -15,7 +14,6 @@ export const useTogglePasswordVisibility = () => {
       setPasswordVisibility(!passwordVisibility);
     }
   };
-
   return {
     passwordVisibility,
     rightIcon,

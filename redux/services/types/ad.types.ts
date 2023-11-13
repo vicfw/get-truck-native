@@ -1,40 +1,33 @@
-import { NotificationSender } from './../../../globalTypes';
-import { Ad } from '../../../globalTypes';
-
+import { Ad } from "../../../globalTypes";
 export interface CreateOrUpdateAdResponse {
   ad: Ad;
   status: string;
 }
-
 export interface CreateOrUpdateAdBody
   extends Omit<
     Ad,
-    | 'isApproved'
-    | 'isPopular'
-    | 'createdAt'
-    | 'updatedAt'
-    | '_id'
-    | 'featuredAd'
-    | 'creator'
+    | "isApproved"
+    | "isPopular"
+    | "createdAt"
+    | "updatedAt"
+    | "_id"
+    | "featuredAd"
+    | "creator"
   > {}
-
 export interface GetAllAdsResponse {
   status: string;
   count: number;
   totalCount: number;
   ads: Ad[];
 }
-
 export interface GetSingleAdResponse {
   status: string;
   ad: Ad;
 }
-
 export interface DeleteAdResponse {
   status: string;
   data: null;
 }
-
 export type AdFilterType =
   | {
       title?: string;
@@ -62,7 +55,6 @@ export type AdFilterType =
       isApproved?: string;
     }
   | undefined;
-
 export type AdSearchType = {
   query: string;
 };

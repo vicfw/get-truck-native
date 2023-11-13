@@ -10,6 +10,7 @@ import {
   useSearchAdQuery,
 } from "../redux/services/adService";
 import { useGetLastFourCategoriesQuery } from "../redux/services/categoryService";
+import { useGetBannerQuery } from "../redux/services/layout";
 import {
   useCreateSavedSearchMutation,
   useDeleteSavedSearchMutation,
@@ -22,8 +23,6 @@ import {
 import { RootStackParamList } from "../types";
 import { useDebounce } from "../utils/hook/useDebounce";
 import { useAppDispatch } from "./../redux/hooks";
-import { Banner } from "../redux/services/types/layout.types";
-import { useGetBannerQuery } from "../redux/services/layout";
 
 export const useHome = (
   navigation: NativeStackNavigationProp<RootStackParamList, "Home", undefined>,
@@ -38,19 +37,15 @@ export const useHome = (
   const savedSearchTerms = useRef<string[] | undefined>();
   const [numColumns, setNumColumns] = useState(2);
   const [keyCounter, setKeyCounter] = useState(0);
-
   const changeColumns = (column: number) => {
     setNumColumns(column);
     setKeyCounter((perv) => perv + 1);
   };
-
   const [pagination, setPagination] = useState<{
     limit: number;
     page: number;
   }>({ limit: 6, page: 0 });
-
   const { data: bannerData } = useGetBannerQuery();
-
   const { data: userData, refetch: meQueryRefetch } = useMeQuery();
   const {
     currentData: searchData,
@@ -58,24 +53,12 @@ export const useHome = (
     isFetching: searchIsFetching,
   } = useSearchAdQuery({ query: debouncedQuery }, { skip: !debouncedQuery });
 
-  const {
-    data: lastFourCategoryData,
-    isLoading: lastFourCategoryIsLoading,
-    isFetching: lastFourCategoryIsFetching,
-    error: lastFourCategoryError,
-  } = useGetLastFourCategoriesQuery();
+  const { data: lastFourCategoryData } = useGetLastFourCategoriesQuery();
   const [updateUserToken] = useUpdateUserMutation();
-
   const [deleteSavedSearch] = useDeleteSavedSearchMutation();
-
   const [createSavedSearch] = useCreateSavedSearchMutation();
-
-  const {
-    data: savedSearchData,
-    isLoading: savedSearchIsLoading,
-    refetch: savedSearchRefetch,
-  } = useGetSavedSearchQuery({ count: "5" }); // count to show
-
+  const { data: savedSearchData, isLoading: savedSearchIsLoading } =
+    useGetSavedSearchQuery({ count: "5" });
   const registerForPushNotificationsAsync = async () => {
     try {
       const { status: existingStatus } =
@@ -83,7 +66,6 @@ export const useHome = (
       let finalStatus = existingStatus;
       if (existingStatus !== "granted") {
         const { status } = await Notifications.requestPermissionsAsync();
-
         finalStatus = status;
       }
 
@@ -91,16 +73,12 @@ export const useHome = (
         Alert.alert("Failed to get push token for push notification!");
       }
       const token = (await Notifications.getExpoPushTokenAsync()).data;
-
-      console.log(token, "expo notif token");
-
       dispatch(handleAddNotificationToken(token));
       if (!userData?.data.notificationToken) {
-        const updateResult = await updateUserToken({
+        await updateUserToken({
           notificationToken: token,
         });
       }
-
       if (Platform.OS === "android") {
         Notifications.setNotificationChannelAsync("default", {
           name: "default",
@@ -113,14 +91,11 @@ export const useHome = (
       console.log(e, "error in notification function placed in useHome file");
     }
   };
-
   const handleSearch = (value: string) => {
     setQuery(value);
   };
-
   const getTimeOfDay = () => {
     const hour = new Date().getHours();
-
     if (hour >= 6 && hour < 12) {
       return "Good Morning";
     } else if (hour >= 12 && hour < 18) {
@@ -129,43 +104,32 @@ export const useHome = (
       return "Good Evening";
     }
   };
-
   const {
     data: allAds,
     isLoading: adDataLoading,
     refetch,
     isFetching: adDataFetching,
-    error: AllAdsError,
   } = useGetAllAdsQuery(
     { ...pagination!, ...{ isApproved: true }, ...route.params?.filterData },
     { refetchOnMountOrArgChange: true }
   );
-
-  console.log(pagination, "pagination");
-
   const handleLoadMore = () => {
-    // we return if products end
     if (allAds?.totalCount === adData.length) return;
     if (adDataFetching || adDataLoading) return;
-
     setPagination((perv) => ({ ...perv, page: perv.page! + 1 }));
   };
-
   const onRefresh = () => {
     setPagination((perv) => ({ ...perv, page: 1 }));
     navigation.setParams({ filterData: undefined });
     refetch();
     setAdData(allAds?.ads!);
   };
-
   const handleClickSearchTerm = (searchTerm: string) => {
     setQuery(searchTerm);
   };
-
   const handleDeleteSavedSearch = (savedSearchId: string) => {
     deleteSavedSearch({ savedSearchId });
   };
-
   const handleCreateSavedSearch = async () => {
     try {
       await createSavedSearch({
@@ -184,7 +148,6 @@ export const useHome = (
       });
     }
   };
-
   useEffect(() => {
     if (adData?.length && pagination.page > 0) {
       setAdData((perv) => [...perv, ...allAds?.ads!]);
@@ -192,34 +155,27 @@ export const useHome = (
       setAdData(allAds?.ads!);
     }
   }, [allAds]);
-
   useEffect(() => {
     if (route.params?.searchTerm?.length) {
       setQuery(route.params?.searchTerm ?? "");
     }
-
     return () => {
       setQuery("");
     };
   }, [route.params?.searchTerm]);
-
   useEffect(() => {
     savedSearchTerms.current = savedSearchData?.data.map(
       (saved) => saved.searchTerm
     );
   }, [savedSearchData?.data]);
-
   useEffect(() => {
     if (route.params?.filterData) {
       setPagination((perv) => ({ ...perv, page: 1 }));
     }
-
     setTimeOfDay(getTimeOfDay());
     refetch();
-
     registerForPushNotificationsAsync();
   }, []);
-
   return {
     get: {
       adData,

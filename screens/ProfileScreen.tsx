@@ -1,19 +1,19 @@
-import {
-  View,
-  Text,
-  Dimensions,
-  Image,
-  FlatList,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-import React from "react";
-import Colors from "../constants/Colors";
 import { Icon } from "@rneui/themed";
-import { useProfile } from "../screenHooks/useProfile";
+import React from "react";
+import {
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import SingleAd from "../components/SingleAd";
-import { RootTabScreenProps } from "../types";
+import Colors from "../constants/Colors";
 import { themeRenderer } from "../constants/Common";
+import { useProfile } from "../screenHooks/useProfile";
+import { RootTabScreenProps } from "../types";
 
 const ProfileScreen: React.FC<RootTabScreenProps<"ProfileTab">> = ({
   navigation,

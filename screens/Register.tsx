@@ -20,9 +20,7 @@ const Register = ({ navigation }: any) => {
   const [createUser, { isLoading, data, error, status }] =
     useSignupUserMutation();
   const dispatch = useDispatch();
-
   const navigate = useNavigation();
-
   const handleSubmit = async (values: {
     email: string;
     password: string;
@@ -31,7 +29,6 @@ const Register = ({ navigation }: any) => {
   }) => {
     try {
       const { data, status, token } = await createUser(values).unwrap();
-
       if (data.user?._id) {
         try {
           const { user } = data;

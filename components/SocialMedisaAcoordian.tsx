@@ -142,5 +142,4 @@ const SocialMediasAccordion: FC<SocialMediasAccordionIProps> = ({
     </ListItem.Accordion>
   );
 };
-
 export default SocialMediasAccordion;

@@ -3,10 +3,9 @@ import React from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useEditProfile } from "../screenHooks/useEditProfile";
 import { RootStackScreenProps } from "../types";
-import Toast from "react-native-toast-message";
-import { themeRenderer } from "../constants/Common";
 
 const EditProfileScreen: React.FC<RootStackScreenProps<"EditProfile">> = ({
   navigation,

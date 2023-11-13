@@ -78,13 +78,10 @@ export const useAdvancedSearch = () => {
     const mappedData = categoriesData?.map((dt) => {
       return { label: dt.name, value: dt._id };
     });
-    //set trucks category Id
     const filteredData = categoriesData?.find(
       (dt) => dt.name.toLowerCase() === "trucks"
     );
-
     trucksCategoryId.current = filteredData?._id;
-
     setDropdownData(mappedData);
   }, [categoriesData]);
 
@@ -94,7 +91,6 @@ export const useAdvancedSearch = () => {
     let category = categoriesData?.find(
       (cat) => cat._id === selectedCategoryId
     );
-
     if (category?.parentId) {
       const parent = categoriesData?.find(
         (cat) => cat._id === category?.parentId
@@ -103,10 +99,8 @@ export const useAdvancedSearch = () => {
         category = findParent(parent?._id);
       }
     }
-
     return category;
   };
-
   return {
     get: {
       selectPickerStyles,

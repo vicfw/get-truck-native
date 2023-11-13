@@ -1,13 +1,13 @@
-import { api } from './main';
-import { UploadResponse } from './types/upload.types';
+import { api } from "./main";
+import { UploadResponse } from "./types/upload.types";
 
 export const UploadApi = api.injectEndpoints({
   endpoints: (build) => ({
     uploadAdPhoto: build.mutation<UploadResponse, FormData>({
       query: (body) => {
         return {
-          url: '/upload/adImage',
-          method: 'POST',
+          url: "/upload/adImage",
+          method: "POST",
           body,
         };
       },
@@ -15,8 +15,8 @@ export const UploadApi = api.injectEndpoints({
     uploadProfilePhoto: build.mutation<UploadResponse, FormData>({
       query: (body) => {
         return {
-          url: '/upload/profilePhoto',
-          method: 'POST',
+          url: "/upload/profilePhoto",
+          method: "POST",
           body,
         };
       },
@@ -24,6 +24,5 @@ export const UploadApi = api.injectEndpoints({
   }),
   overrideExisting: true,
 });
-
 export const { useUploadAdPhotoMutation, useUploadProfilePhotoMutation } =
   UploadApi;

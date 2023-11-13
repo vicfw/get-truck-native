@@ -1,5 +1,4 @@
-import { Category } from '../../../globalTypes';
-
+import { Category } from "../../../globalTypes";
 export interface CategoriesResponse {
   categoryList: {
     _id: string;
@@ -9,10 +8,8 @@ export interface CategoriesResponse {
     parentId: string | null;
   }[];
 }
-
 export interface CategoriesWithoutChildrenResponse
-  extends Omit<Category, 'children'> {}
-
+  extends Omit<Category, "children"> {}
 export interface CategoriesWithoutChildrenResponse {
   data: {
     _id: string;
@@ -22,7 +19,6 @@ export interface CategoriesWithoutChildrenResponse {
     parentId: string | null;
   }[];
 }
-
 export interface GetLastFourCategoriesResponse {
   data: Category[];
   status: string;

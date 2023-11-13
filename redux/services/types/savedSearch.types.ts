@@ -1,10 +1,9 @@
-import { SavedSearch } from '../../../globalTypes';
+import { SavedSearch } from "../../../globalTypes";
 
 export interface SavedSearchCreateResponse {
   status: string;
   data: SavedSearch;
 }
-
 export interface SavedSearchDeleteResponse {
   status: string;
   message: string;
@@ -12,6 +11,5 @@ export interface SavedSearchDeleteResponse {
 export interface GetSavedSearchResponse {
   status: string;
   count: number;
-
   data: SavedSearch[];
 }

@@ -1,14 +1,14 @@
-import { useDispatch } from "react-redux";
-import { clearStorage } from "./../redux/services/deviceStorage";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { color } from "@rneui/base";
+import * as ImageManipulator from "expo-image-manipulator";
+import * as ImagePicker from "expo-image-picker";
+import * as MailComposer from "expo-mail-composer";
 import { useFormik } from "formik";
 import mime from "mime";
 import React from "react";
 import { Dimensions, Platform } from "react-native";
 import Toast from "react-native-toast-message";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import navigation from "../navigation";
+import { useDispatch } from "react-redux";
+import { handleSignIn } from "../redux/features/userSlice";
 import { useUploadProfilePhotoMutation } from "../redux/services/uploadService";
 import {
   useMeQuery,
@@ -16,10 +16,7 @@ import {
 } from "../redux/services/userServices";
 import { RootStackParamList } from "../types";
 import { editProfileValidationSchema } from "../utils/yupSchema";
-import * as ImagePicker from "expo-image-picker";
-import * as ImageManipulator from "expo-image-manipulator";
-import { handleSignIn } from "../redux/features/userSlice";
-import * as MailComposer from "expo-mail-composer";
+import { clearStorage } from "./../redux/services/deviceStorage";
 
 export function useEditProfile(
   navigation: NativeStackNavigationProp<
@@ -38,12 +35,10 @@ export function useEditProfile(
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [uploadProfilePhoto, { isLoading: profilePhotoLoading }] =
     useUploadProfilePhotoMutation();
-
   const formInitialValues = {
     name: data?.data.name,
     email: data?.data.email,
   };
-
   const formik = useFormik({
     initialValues: formInitialValues,
     onSubmit: (values) => {
@@ -51,14 +46,12 @@ export function useEditProfile(
     },
     validationSchema: editProfileValidationSchema,
   });
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.1,
       allowsEditing: true,
     });
-
     if (!result.canceled) {
       const data = new FormData();
       const photo = await ImageManipulator.manipulateAsync(
@@ -66,7 +59,7 @@ export function useEditProfile(
         [],
         { compress: 1, format: ImageManipulator.SaveFormat.PNG }
       );
-
+      // @ts-ignore
       data.append("image", {
         // @ts-ignore
         name: photo.fileName + randomId ?? "file" + randomId,
@@ -74,7 +67,6 @@ export function useEditProfile(
         uri:
           Platform.OS === "ios" ? photo.uri.replace("file://", "") : photo.uri,
       });
-
       try {
         const result = await uploadProfilePhoto(data);
         // @ts-ignore
@@ -88,15 +80,12 @@ export function useEditProfile(
       }
     }
   };
-
   const sendEmail = async () => {
     const options = {
       subject: "",
       recipients: ["gettruckgroup@gmail.com"],
-      // recipients: ['faridforward223@gmail.com'],
       body: "",
     };
-
     let promise = new Promise((resolve, reject) => {
       MailComposer.composeAsync(options)
         .then((result) => {
@@ -118,12 +107,10 @@ export function useEditProfile(
       (error) => setEmailStatus("Status: email " + error.status)
     );
   };
-
   const handleLogOut = async () => {
     await clearStorage();
     dispatch(handleSignIn(false));
   };
-
   const updateUserHandler = async (values: typeof formInitialValues) => {
     try {
       await updateUser({

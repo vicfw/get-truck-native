@@ -13,5 +13,4 @@ export const LayoutApi = api.injectEndpoints({
   }),
   overrideExisting: true,
 });
-
 export const { useGetBannerQuery } = LayoutApi;

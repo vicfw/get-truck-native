@@ -1,12 +1,8 @@
-import { SavedSearch } from './../../../globalTypes';
-import { Ad } from '../../../globalTypes';
-
+import { Ad } from "../../../globalTypes";
 export interface FeaturedAdResponse {}
-
 export interface CreateFeaturedAd {
   ad: string;
 }
-
 export interface GetFeaturedAdByUserResponse {
   status: string;
   featureAd: {

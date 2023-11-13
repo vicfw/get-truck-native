@@ -1,7 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-
-// Define a type for the slice state
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   id: string;
@@ -16,23 +14,20 @@ interface CounterState {
   token: string;
   user: UserState;
 }
-
-// Define the initial state using that type
 const initialState: CounterState = {
   isSignedIn: false,
-  token: '',
+  token: "",
   user: {
-    id: '',
-    email: '',
-    name: '',
-    photo: '',
-    role: '',
-    notificationToken: '',
+    id: "",
+    email: "",
+    name: "",
+    photo: "",
+    role: "",
+    notificationToken: "",
   },
 };
-
 export const usersSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     handleSignIn: (state, action: PayloadAction<boolean>) => {
@@ -49,12 +44,10 @@ export const usersSlice = createSlice({
     },
   },
 });
-
 export const {
   handleSignIn,
   handleAddToken,
   handleAddUser,
   handleAddNotificationToken,
 } = usersSlice.actions;
-
 export default usersSlice.reducer;

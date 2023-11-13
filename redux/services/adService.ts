@@ -79,7 +79,6 @@ export const AdApi = api.injectEndpoints({
   }),
   overrideExisting: true,
 });
-
 export const {
   useCreateAdMutation,
   useGetAllAdsQuery,

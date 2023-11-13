@@ -1,38 +1,37 @@
+import { Icon } from "@rneui/themed";
+import dayjs from "dayjs";
+import React, { useEffect } from "react";
 import {
-  View,
-  Text,
+  ActivityIndicator,
+  Appearance,
   Dimensions,
   Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-  Pressable,
   KeyboardAvoidingView,
   Platform,
-  Appearance,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import React, { useEffect } from "react";
-import { Icon } from "@rneui/themed";
-import { useGetSingleAdQuery } from "../redux/services/adService";
-import { RootStackScreenProps } from "../types";
-import {
-  useCreateOrAccessChatMutation,
-  useGetAllMessagesQuery,
-  useSendMessageMutation,
-} from "../redux/services/chatService";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppSelector } from "../redux/hooks";
-import dayjs from "dayjs";
-import Colors from "../constants/Colors";
+import Toast from "react-native-toast-message";
 import io from "socket.io-client";
 import { URL } from "../constants/Api";
-import Toast from "react-native-toast-message";
+import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import {
   hidePushNotifications,
   unhidePushNotifications,
 } from "../hooks/usePushNotification";
-import { themeRenderer } from "../constants/Common";
+import { useAppSelector } from "../redux/hooks";
+import { useGetSingleAdQuery } from "../redux/services/adService";
+import {
+  useGetAllMessagesQuery,
+  useSendMessageMutation,
+} from "../redux/services/chatService";
+import { RootStackScreenProps } from "../types";
 
 const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
   route,

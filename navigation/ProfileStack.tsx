@@ -1,15 +1,14 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Icon } from '@rneui/base';
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import Colors from '../constants/Colors';
-import EditProfileScreen from '../screens/EditProfileScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import { RootStackParamList } from '../types';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Icon } from "@rneui/base";
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import Colors from "../constants/Colors";
+import EditProfileScreen from "../screens/EditProfileScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import { RootStackParamList } from "../types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 export const ProfileStackScreen = () => {
   return (
     <Stack.Navigator initialRouteName="Profile">
@@ -20,7 +19,7 @@ export const ProfileStackScreen = () => {
         options={({ navigation }) => {
           return {
             headerShown: true,
-            title: '',
+            title: "",
             headerStyle: {
               backgroundColor: Colors.main,
               shadowColor: Colors.main,
@@ -31,7 +30,7 @@ export const ProfileStackScreen = () => {
                 <Item
                   IconComponent={() => (
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('EditProfile')}
+                      onPress={() => navigation.navigate("EditProfile")}
                     >
                       <Icon
                         type="ionicon"
@@ -45,7 +44,7 @@ export const ProfileStackScreen = () => {
                   title=""
                   color="white"
                   iconName="ios-search"
-                  onPress={() => navigation.navigate('EditProfile')}
+                  onPress={() => navigation.navigate("EditProfile")}
                 ></Item>
               </HeaderButtons>
             ),
@@ -56,9 +55,9 @@ export const ProfileStackScreen = () => {
         name="EditProfile"
         component={EditProfileScreen}
         options={{
-          title: 'Edit Profile',
-          headerTitleAlign: 'center',
-          headerTintColor: '#fff',
+          title: "Edit Profile",
+          headerTitleAlign: "center",
+          headerTintColor: "#fff",
           headerBackTitleVisible: false,
           headerStyle: { backgroundColor: Colors.main },
           headerRight: () => (
@@ -66,7 +65,7 @@ export const ProfileStackScreen = () => {
               <Item
                 title="Update"
                 color="white"
-                buttonStyle={{ fontWeight: '500' }}
+                buttonStyle={{ fontWeight: "500" }}
               />
             </HeaderButtons>
           ),

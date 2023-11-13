@@ -1,29 +1,23 @@
-import { objectToSearch } from '../../utils/objectToSearchParam';
-import { api } from './main';
-import { DeleteResponse } from './types/api.global.types';
-import {
-  CreateFeaturedAd,
-  FeaturedAdResponse,
-  GetFeaturedAdByUserResponse,
-} from './types/featuredAd.types';
+import { objectToSearch } from "../../utils/objectToSearchParam";
+import { api } from "./main";
 import {
   GetSavedSearchResponse,
   SavedSearchCreateResponse,
   SavedSearchDeleteResponse,
-} from './types/savedSearch.types';
+} from "./types/savedSearch.types";
 
 export const SavedSearchApi = api.injectEndpoints({
   endpoints: (build) => ({
     getSavedSearch: build.query<GetSavedSearchResponse, { count?: string }>({
       query: (args) => {
         return {
-          url: '/savedSearch'.concat(
+          url: "/savedSearch".concat(
             objectToSearch(args as { [count: string]: any })
           ),
-          method: 'GET',
+          method: "GET",
         };
       },
-      providesTags: ['SavedSearch'],
+      providesTags: ["SavedSearch"],
     }),
     createSavedSearch: build.mutation<
       SavedSearchCreateResponse,
@@ -31,12 +25,12 @@ export const SavedSearchApi = api.injectEndpoints({
     >({
       query: (body) => {
         return {
-          url: '/savedSearch',
-          method: 'POST',
+          url: "/savedSearch",
+          method: "POST",
           body,
         };
       },
-      invalidatesTags: ['SavedSearch'],
+      invalidatesTags: ["SavedSearch"],
     }),
     deleteSavedSearch: build.mutation<
       SavedSearchDeleteResponse,
@@ -45,10 +39,10 @@ export const SavedSearchApi = api.injectEndpoints({
       query: (body) => {
         return {
           url: `/savedSearch/${body.savedSearchId}`,
-          method: 'DELETE',
+          method: "DELETE",
         };
       },
-      invalidatesTags: ['SavedSearch'],
+      invalidatesTags: ["SavedSearch"],
     }),
   }),
   overrideExisting: true,

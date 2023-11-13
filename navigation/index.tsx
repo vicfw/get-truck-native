@@ -7,7 +7,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Icon } from "@rneui/themed";
 import * as React from "react";
-import { ColorSchemeName, Image, View } from "react-native";
+import { ColorSchemeName, View } from "react-native";
 import { OverflowMenuProvider } from "react-navigation-header-buttons";
 import Colors from "../constants/Colors";
 import {
@@ -33,10 +33,8 @@ import {
   RootTabScreenProps,
 } from "../types";
 import { HomeStackScreen } from "./HomeStack";
-import LinkingConfiguration from "./LinkingConfiguration";
 import { PostAdStackScreen } from "./PostAdStack";
 import { ProfileStackScreen } from "./ProfileStack";
-import { themeRenderer } from "../constants/Common";
 
 export default function Navigation({
   colorScheme,
@@ -52,9 +50,7 @@ export default function Navigation({
       try {
         const token = await getLocalStorageData("token");
         const user = await getLocalStorageData("user");
-
         // await clearStorage();
-
         if (token || tokenInState) {
           dispatch(handleAddToken(token));
           dispatch(handleSignIn(true));
@@ -77,7 +73,6 @@ export default function Navigation({
 
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <OverflowMenuProvider>
@@ -178,10 +173,7 @@ function RootNavigator() {
 }
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
 function BottomTabNavigator() {
-  // const colorScheme = useColorScheme();
-
   return (
     <BottomTab.Navigator initialRouteName="HomeTab">
       <BottomTab.Screen

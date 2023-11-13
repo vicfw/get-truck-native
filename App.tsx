@@ -14,18 +14,15 @@ import { MobileAds } from "react-native-google-mobile-ads";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-
   usePushNotification();
-
-  // useEffect(() => {
-  //   MobileAds()
-  //     .initialize()
-  //     .then((adapterStatuses) => {
-  //       console.log("Initialization complete!");
-  //       // Initialization complete!
-  //     });
-  // }, []);
-
+  useEffect(() => {
+    MobileAds()
+      .initialize()
+      .then((adapterStatuses) => {
+        console.log("Initialization complete!");
+        // Initialization complete!
+      });
+  }, []);
   if (!isLoadingComplete) {
     return null;
   } else {

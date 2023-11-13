@@ -7,7 +7,6 @@ import PostAd from "../screens/PostAd";
 import { RootStackParamList, RootStackScreenProps } from "../types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 export const PostAdStackScreen = () => {
   return (
     <Stack.Navigator initialRouteName="PostAd">

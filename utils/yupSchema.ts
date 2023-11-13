@@ -3,11 +3,9 @@ import * as yup from "yup";
 const regex = new RegExp(
   "(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$"
 );
-
 const phoneNumberRegex = new RegExp(
   "^([2-9]{1}[0-9]{2})(([2-9]{1})(1[0,2-9]{1}|[0,2-9]{1}[0-9]{1}))([0-9]{4})$"
 );
-
 export const registerValidationSchema = yup.object().shape({
   email: yup.string().email("Please enter valid email").required("Required"),
   password: yup

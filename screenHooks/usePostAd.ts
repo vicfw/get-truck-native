@@ -1,25 +1,22 @@
-import { truckColors } from "./../constants/Colors";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { CompositeNavigationProp } from "@react-navigation/native";
+import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import * as ImageManipulator from "expo-image-manipulator";
 import * as ImagePicker from "expo-image-picker";
 import mime from "mime";
-import React, { useMemo, useRef, useState, useCallback } from "react";
-import { Animated, Platform } from "react-native";
+import React, { useMemo, useRef, useState } from "react";
+import { Platform } from "react-native";
 import Toast from "react-native-toast-message";
 import { baseUrl } from "../constants/Api";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useCreateAdMutation } from "../redux/services/adService";
 import { useGetAllCategoriesWithoutChildrenQuery } from "../redux/services/categoryService";
 import { CreateOrUpdateAdBody } from "../redux/services/types/ad.types";
 import { CategoriesWithoutChildrenResponse } from "../redux/services/types/category.types";
 import { useUploadAdPhotoMutation } from "../redux/services/uploadService";
-import { RootStackParamList, RootTabParamList } from "../types";
+import { RootStackParamList } from "../types";
 import { getYearsArray } from "../utils/getAllYears";
-import { LatLng, Region } from "react-native-maps";
-import { RouteProp } from "@react-navigation/native";
-import { themeRenderer } from "../constants/Common";
+import { truckColors } from "./../constants/Colors";
 
 export const usePostAd = (
   navigation: CompositeNavigationProp<

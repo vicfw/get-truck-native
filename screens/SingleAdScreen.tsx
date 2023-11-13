@@ -1,7 +1,7 @@
 import { Button, Icon } from "@rneui/themed";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
-import React, { useMemo, useRef, useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import {
   ActivityIndicator,
   Animated,
@@ -20,12 +20,12 @@ import {
 import MapView, { Circle, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { Ad as AdType, Category } from "../globalTypes";
 import { useAppSelector } from "../redux/hooks";
 import { useCreateOrAccessChatMutation } from "../redux/services/chatService";
 import { useSingleAdScreen } from "../screenHooks/useSingleAd";
 import { RootStackScreenProps } from "../types";
-import { themeRenderer } from "../constants/Common";
 
 interface SingleAdScreenProps {}
 

@@ -1,18 +1,16 @@
-import { CreateFeaturedAd } from "./../redux/services/types/featuredAd.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
-import { Animated, Dimensions, Alert } from "react-native";
+import { Alert, Animated, Dimensions, Share } from "react-native";
 import {
   useDeleteAdMutation,
   useGetSingleAdQuery,
 } from "../redux/services/adService";
-import { RootStackParamList } from "../types";
 import {
   useCreateFeaturedAdMutation,
   useDeleteFeaturedAdMutation,
 } from "../redux/services/featuredAdService";
 import { useMeQuery } from "../redux/services/userServices";
-import { Share } from "react-native";
+import { RootStackParamList } from "../types";
 
 export const useSingleAdScreen = (
   navigation: NativeStackNavigationProp<

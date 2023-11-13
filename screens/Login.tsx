@@ -1,28 +1,28 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Image,
-  Dimensions,
-  ScrollView,
-} from "react-native";
-import React, { useEffect } from "react";
-import Colors from "../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
 import { Button } from "@rneui/themed";
 import { Formik } from "formik";
-import { loginValidationSchema } from "../utils/yupSchema";
-import { useLoginUserMutation } from "../redux/services/userServices";
-import { storeData } from "../redux/services/deviceStorage";
-import PasswordInput from "../components/UI/PasswordInput";
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import Toast from "react-native-toast-message";
-import { useAppDispatch } from "../redux/hooks";
+import PasswordInput from "../components/UI/PasswordInput";
+import Colors from "../constants/Colors";
 import {
   handleAddToken,
   handleAddUser,
   handleSignIn,
 } from "../redux/features/userSlice";
+import { useAppDispatch } from "../redux/hooks";
+import { storeData } from "../redux/services/deviceStorage";
+import { useLoginUserMutation } from "../redux/services/userServices";
+import { loginValidationSchema } from "../utils/yupSchema";
 
 const Login = () => {
   const [handleLoginUser, { isLoading }] = useLoginUserMutation();

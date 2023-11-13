@@ -5,9 +5,9 @@ import { ActivityIndicator, Text, TextInput, View } from "react-native";
 import RNPickerSelect, { Item } from "react-native-picker-select";
 import { TRAILER_BRANDS, TRUCKS_BRANDS } from "../constants/Brands";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useNotificationSender } from "../screenHooks/useNotificationSender";
 import { createNotificationSenderSchema } from "../utils/yupSchema";
-import { themeRenderer } from "../constants/Common";
 
 const NotificationSenderScreen = () => {
   const { get, set, on } = useNotificationSender();

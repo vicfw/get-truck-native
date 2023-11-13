@@ -1,18 +1,17 @@
-import { NotificationSender } from "./../globalTypes";
 import { useEffect, useMemo, useState } from "react";
 import { Platform } from "react-native";
+import Toast from "react-native-toast-message";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useGetAllCategoriesWithoutChildrenQuery } from "../redux/services/categoryService";
-import { getYearsArray } from "../utils/getAllYears";
-import { CategoriesWithoutChildrenResponse } from "../redux/services/types/category.types";
 import {
   useCreateNotificationSenderMutation,
   useDeleteNotificationForSendMutation,
   useGetNotificationForSendQuery,
   useUpdateNotificationSenderMutation,
 } from "../redux/services/notificationsenderService";
-import Toast from "react-native-toast-message";
-import { themeRenderer } from "../constants/Common";
+import { CategoriesWithoutChildrenResponse } from "../redux/services/types/category.types";
+import { getYearsArray } from "../utils/getAllYears";
 
 export const useNotificationSender = () => {
   const [dropdownData, setDropdownData] = useState<

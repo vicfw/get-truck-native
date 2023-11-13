@@ -3,16 +3,13 @@ import { Formik } from "formik";
 import React, { FC } from "react";
 import { Platform, ScrollView, Text, TextInput, View } from "react-native";
 import RNPickerSelect, { Item } from "react-native-picker-select";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { TRAILER_BRANDS, TRUCKS_BRANDS } from "../constants/Brands";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useAdvancedSearch } from "../screenHooks/useAdvancedSearch";
 import { RootStackScreenProps } from "../types";
 import { adFilterValidationSchema } from "../utils/yupSchema";
-import { themeRenderer } from "../constants/Common";
 
 const AdvancedSearchScreen: FC<RootStackScreenProps<"SearchModal">> = ({
   navigation,

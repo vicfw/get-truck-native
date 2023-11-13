@@ -1,4 +1,3 @@
-import { User } from "../../globalTypes";
 import { api } from "./main";
 import {
   AuthUserResponse,

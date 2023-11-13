@@ -16,10 +16,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SocialMediasAccordion from "../components/SocialMedisaAcoordian";
 import { TRAILER_BRANDS, TRUCKS_BRANDS } from "../constants/Brands";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { usePostAd } from "../screenHooks/usePostAd";
 import { RootStackScreenProps } from "../types";
 import { postAdValidationSchema } from "../utils/yupSchema";
-import { themeRenderer } from "../constants/Common";
 
 export default function PostAd({
   navigation,

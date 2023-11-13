@@ -1,8 +1,8 @@
-import * as Notifications from 'expo-notifications';
-import { useEffect, useRef, useState } from 'react';
+import * as Notifications from "expo-notifications";
+import { useEffect, useRef, useState } from "react";
 
 export const usePushNotification = (routeName?: string) => {
-  if (routeName !== 'Chat') {
+  if (routeName !== "Chat") {
     Notifications.setNotificationHandler({
       handleNotification: async () => ({
         shouldShowAlert: true,
@@ -10,22 +10,15 @@ export const usePushNotification = (routeName?: string) => {
         shouldSetBadge: false,
       }),
     });
-
     const [notifications, setNotifications] = useState<boolean>(false);
-    const [notification, setNotification] = useState(false);
-
     const notificationListener = useRef<any>();
-
     const responseListener = useRef<any>();
-
-    const handleNotification = (notification: any) => {
+    const handleNotification = () => {
       setNotifications(notifications);
     };
-
     const handleNotificationResponse = (response: any) => {
-      console.log(response, 'response');
+      console.log(response, "response");
     };
-
     useEffect(() => {
       notificationListener.current =
         Notifications.addNotificationReceivedListener(handleNotification);
@@ -44,7 +37,6 @@ export const usePushNotification = (routeName?: string) => {
   }
   return {};
 };
-
 export function hidePushNotifications() {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -54,7 +46,6 @@ export function hidePushNotifications() {
     }),
   });
 }
-
 export function unhidePushNotifications() {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({

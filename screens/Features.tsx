@@ -11,9 +11,9 @@ import {
 } from "react-native";
 import SingleAd from "../components/SingleAd";
 import Colors from "../constants/Colors";
+import { themeRenderer } from "../constants/Common";
 import { useFeatures } from "../screenHooks/useFeatures";
 import { RootTabScreenProps } from "../types";
-import { themeRenderer } from "../constants/Common";
 
 const Features: React.FC<RootTabScreenProps<"Features">> = ({ navigation }) => {
   const { get, set, on } = useFeatures(navigation);

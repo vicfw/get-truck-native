@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 import {
   useDeleteFeaturedAdMutation,
   useGetFeaturedAdsByCurrentUserQuery,
-} from '../redux/services/featuredAdService';
+} from "../redux/services/featuredAdService";
 import {
   useDeleteSavedSearchMutation,
   useGetSavedSearchQuery,
-} from '../redux/services/savedSearch';
+} from "../redux/services/savedSearch";
 
 export const useFeatures = (navigation: any) => {
-  const [tab, setTab] = useState<'favorite' | 'saved'>('favorite');
-
+  const [tab, setTab] = useState<"favorite" | "saved">("favorite");
   const {
     data,
     isLoading: getFeatureAdIsLoading,
@@ -27,20 +26,15 @@ export const useFeatures = (navigation: any) => {
   const [deleteSavedSearch] = useDeleteSavedSearchMutation();
 
   const [deleteFeaturedAd, { isLoading }] = useDeleteFeaturedAdMutation();
-  // todo : delete feature add from featured add page
-
   const handleNavigateSearch = (searchTerm: string) => {
-    navigation.navigate('Home', { filterData: undefined, searchTerm });
+    navigation.navigate("Home", { filterData: undefined, searchTerm });
   };
-
   const handleDeleteSavedSearch = (savedSearchId: string) => {
     deleteSavedSearch({ savedSearchId });
   };
-
   useEffect(() => {
-    setTab('favorite');
+    setTab("favorite");
   }, []);
-
   return {
     get: {
       tab,

@@ -1,19 +1,19 @@
+import { Icon, ListItem } from "@rneui/themed";
+import { FC, useState } from "react";
 import {
-  View,
-  Text,
-  ScrollView,
+  ActivityIndicator,
   Image,
   Pressable,
-  TouchableOpacity,
   RefreshControl,
-  ActivityIndicator,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { FC, useState } from "react";
-import { Avatar, Icon, ListItem } from "@rneui/themed";
-import { useGetAllCategoriesQuery } from "../redux/services/categoryService";
 import Colors from "../constants/Colors";
-import { RootStackScreenProps } from "../types";
 import { themeRenderer } from "../constants/Common";
+import { useGetAllCategoriesQuery } from "../redux/services/categoryService";
+import { RootStackScreenProps } from "../types";
 
 const CategoriesScreen: FC<RootStackScreenProps<"Categories">> = ({
   navigation,

@@ -3,7 +3,6 @@ export type Banner = {
   mobileBanner: string;
   mobileBannerLink: string;
 };
-
 export type GetBannerResponse = {
   status: string;
   data: Banner;

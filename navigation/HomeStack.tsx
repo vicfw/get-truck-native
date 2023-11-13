@@ -2,12 +2,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Colors from "../constants/Colors";
 import CategoriesScreen from "../screens/Categories";
 import CategoryScreen from "../screens/CategoryScreen";
-import ModalScreen from "../screens/EditModalScreen";
 import HomeScreen from "../screens/HomeScreen";
+import NotificationSender from "../screens/NotificationSender";
 import SingleAdScreen from "../screens/SingleAdScreen";
 import { RootStackParamList } from "../types";
-import NotificationSender from "../screens/NotificationSender";
-import PickPlaceModal from "../screens/PickPlaceModal";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -48,8 +46,6 @@ export const HomeStackScreen = () => {
           })}
         />
       </Stack.Group>
-      {/* modal */}
-
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen
           name="NotificationSender"

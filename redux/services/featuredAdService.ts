@@ -41,7 +41,6 @@ export const FeaturedAdApi = api.injectEndpoints({
   }),
   overrideExisting: true,
 });
-
 export const {
   useCreateFeaturedAdMutation,
   useGetFeaturedAdsByCurrentUserQuery,
