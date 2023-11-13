@@ -209,9 +209,9 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
         }
       >
         <View
+          className={themeRenderer("bg-stone-900", "bg-white")}
           style={{
             height: width / 5,
-            backgroundColor: "#fff",
             paddingHorizontal: 15,
             display: "flex",
             flexDirection: "row",
@@ -225,10 +225,13 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
             style={{ height: 40, width: 40 }}
           />
           <View className="ml-4">
-            <Text>{adData?.ad.title}</Text>
+            <Text className={themeRenderer("text-white", "text-black")}>
+              {adData?.ad.title}
+            </Text>
             <View className="mt-2">
-              <Text className="text-gray-500">CA${adData?.ad.price}</Text>
-              {/* <Text className="text-gray-500">{adData?.ad?.address}</Text> */}
+              <Text className={themeRenderer("text-white", "text-black")}>
+                CA${adData?.ad.price}
+              </Text>
             </View>
           </View>
         </View>
