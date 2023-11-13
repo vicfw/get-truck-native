@@ -10,7 +10,6 @@ import Navigation from "./navigation";
 import { store } from "./redux/store";
 import { useEffect } from "react";
 import { MobileAds } from "react-native-google-mobile-ads";
-import * as SplashScreen from "expo-splash-screen";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

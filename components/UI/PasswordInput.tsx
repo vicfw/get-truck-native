@@ -1,22 +1,18 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { FC } from "react";
 import {
-  View,
-  Text,
   Pressable,
-  TextInput,
   StyleSheet,
+  TextInput,
   TextInputProps,
-} from 'react-native';
-import React, { FC } from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useTogglePasswordVisibility } from '../../hooks/useToggleShowPassword';
-import { Icon } from '@rneui/themed';
+  View,
+} from "react-native";
+import { useTogglePasswordVisibility } from "../../hooks/useToggleShowPassword";
 
 interface PasswordInputProps extends TextInputProps {}
-
 const PasswordInput: FC<PasswordInputProps> = (props) => {
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
-
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -37,27 +33,25 @@ const PasswordInput: FC<PasswordInputProps> = (props) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   inputContainer: {
-    backgroundColor: '#F3F4F6',
-    width: '100%',
+    backgroundColor: "#F3F4F6",
+    width: "100%",
     borderRadius: 7,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingRight: 10,
     paddingStart: 9,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     height: 47,
   },
   inputField: {
     fontSize: 15,
-    width: '90%',
+    width: "90%",
   },
 });
-
 export default PasswordInput;

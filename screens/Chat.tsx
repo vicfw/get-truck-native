@@ -10,6 +10,7 @@ import {
   Pressable,
   KeyboardAvoidingView,
   Platform,
+  Appearance,
 } from "react-native";
 import React, { useEffect } from "react";
 import { Icon } from "@rneui/themed";
@@ -31,12 +32,14 @@ import {
   hidePushNotifications,
   unhidePushNotifications,
 } from "../hooks/usePushNotification";
+import { themeRenderer } from "../constants/Common";
 
 const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
   route,
   navigation,
 }) => {
   const socketRef = React.useRef<any>();
+  const theme = Appearance.getColorScheme();
 
   const inset = useSafeAreaInsets();
   const { user } = useAppSelector((state) => state.user);
@@ -292,14 +295,13 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
       )}
       {/* footer ,input section */}
       <KeyboardAvoidingView
-        keyboardVerticalOffset={90}
+        // keyboardVerticalOffset={90}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         enabled
       >
         <View
           style={{
             height: width / 8,
-            backgroundColor: "#fff",
             borderTopColor: "#ccc",
             borderTopWidth: 1,
             display: "flex",
@@ -307,6 +309,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
             justifyContent: "center",
             alignItems: "center",
           }}
+          className={themeRenderer("bg-stone-900", "bg-white")}
         >
           <TextInput
             style={{
@@ -316,6 +319,7 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
               width: "86%",
               height: "65%",
               paddingHorizontal: 10,
+              color: theme === "dark" ? "#fff" : "#000",
             }}
             onChangeText={typingHandler}
             value={message}
@@ -323,7 +327,11 @@ const Chat: React.FC<RootStackScreenProps<"Chat">> = ({
             onEndEditing={() => sendMessage()}
           />
           <TouchableOpacity className="ml-3" onPress={() => sendMessage()}>
-            <Icon type="feather" name="send" />
+            <Icon
+              type="feather"
+              name="send"
+              color={theme === "dark" ? "#fff" : "#000"}
+            />
           </TouchableOpacity>
         </View>
         <TouchableOpacity

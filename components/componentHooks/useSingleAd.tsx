@@ -1,14 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
-import { Icon } from '@rneui/base';
-import { useState, useCallback, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
-import Colors from '../../constants/Colors';
-import { useAppSelector } from '../../redux/hooks';
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "@rneui/base";
+import { useCallback, useEffect, useState } from "react";
+import { TouchableOpacity } from "react-native";
+import Colors from "../../constants/Colors";
 import {
   useCreateFeaturedAdMutation,
   useDeleteFeaturedAdMutation,
-} from '../../redux/services/featuredAdService';
-import Toast from 'react-native-toast-message';
+} from "../../redux/services/featuredAdService";
 
 export const useSingleAd = (
   _id: string,
@@ -18,30 +16,25 @@ export const useSingleAd = (
   const navigation = useNavigation();
 
   const [featureAdded, setFeatureAdded] = useState(false);
-
   const [createFeaturedAd, { isLoading }] = useCreateFeaturedAdMutation();
   const [deleteFeaturedAd, { isLoading: deleteFeaturedLoading }] =
     useDeleteFeaturedAdMutation();
-
   const createFeaturedAdHandler = async (adId: string) => {
     await createFeaturedAd({
       ad: adId,
     }).unwrap();
   };
-
   const deleteFeaturedAdHandler = async () => {
     await deleteFeaturedAd({
       featuredAdId: featuredAdId!,
     }).unwrap();
   };
-
   useEffect(() => {
     setFeatureAdded(!!featuredAdId);
   }, [featuredAdId]);
-
   const renderFeaturedIcon = useCallback(() => {
     switch (iconType) {
-      case 'delete':
+      case "delete":
         return (
           <TouchableOpacity
             onPress={async () => {
@@ -52,17 +45,17 @@ export const useSingleAd = (
               type="feather"
               name="trash"
               size={26}
-              color={Colors['gray-500']}
+              color={Colors["gray-500"]}
             />
           </TouchableOpacity>
         );
-      case 'add':
+      case "add":
         return (
           <TouchableOpacity
             onPress={async () => {
               try {
                 await createFeaturedAdHandler(_id);
-                navigation.navigate('Features');
+                navigation.navigate("Features");
               } catch (error) {}
             }}
           >
@@ -70,7 +63,7 @@ export const useSingleAd = (
               type="font-awesome"
               name="bookmark-o"
               size={26}
-              color={Colors['gray-500']}
+              color={Colors["gray-500"]}
             />
           </TouchableOpacity>
         );
@@ -80,7 +73,6 @@ export const useSingleAd = (
         break;
     }
   }, [iconType]);
-
   return {
     get: { renderFeaturedIcon },
   };

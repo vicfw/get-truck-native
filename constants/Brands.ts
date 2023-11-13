@@ -16,7 +16,6 @@ export const TRUCKS_BRANDS = [
   { label: "Western Star", value: "Western Star" },
   { label: "+Other", value: "Other" },
 ];
-
 export const TRAILER_BRANDS = [
   { label: "All", value: "All" },
   { label: "Hyundai", value: "Hyundai" },

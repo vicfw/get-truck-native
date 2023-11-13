@@ -1,4 +1,4 @@
-import { ImageBackground, Image } from 'react-native';
+import { Image } from "react-native";
 type Props = {
   index?: number;
   activeIndex?: number;
@@ -8,5 +8,4 @@ type Props = {
 const ImageSwiper = (props: Props) => {
   return <Image className="flex-1" source={{ uri: props.imgPath }} />;
 };
-
 export default ImageSwiper;

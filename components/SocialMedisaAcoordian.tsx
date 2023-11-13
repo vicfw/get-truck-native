@@ -1,6 +1,6 @@
-import { View, Text, TextInput } from "react-native";
+import { Icon, ListItem } from "@rneui/base";
 import React, { Dispatch, FC, SetStateAction } from "react";
-import { ListItem, Icon } from "@rneui/base";
+import { TextInput, View } from "react-native";
 import Colors from "../constants/Colors";
 import { themeRenderer } from "../constants/Common";
 
@@ -68,7 +68,6 @@ interface SocialMediasAccordionIProps {
   };
   values: any;
 }
-
 const SocialMediasAccordion: FC<SocialMediasAccordionIProps> = ({
   openAccordion,
   handleBlur,
@@ -129,7 +128,6 @@ const SocialMediasAccordion: FC<SocialMediasAccordionIProps> = ({
               />
             )}
             <View className="bg-white rounded-md" style={{ width: "90%" }}>
-              {/* <Text className="text-gray-500  px-3">Title</Text> */}
               <TextInput
                 onChangeText={handleChange(socialMedia.name)}
                 onBlur={handleBlur(socialMedia.name)}
@@ -137,14 +135,6 @@ const SocialMediasAccordion: FC<SocialMediasAccordionIProps> = ({
                 placeholder={socialMedia.placeholder}
                 className="py-1 px-4 border rounded-md border-gray-400"
               />
-              {/* {errors.title ? (
-              <Text
-                style={{ fontSize: 10, color: 'red' }}
-                className="px-3"
-              >
-                {errors.title as string}
-              </Text>
-            ) : null} */}
             </View>
           </View>
         </ListItem>

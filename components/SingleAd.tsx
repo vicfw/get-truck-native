@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
-import { useSingleAd } from "./componentHooks/useSingleAd";
-import { User } from "../globalTypes";
 import { themeRenderer } from "../constants/Common";
+import { User } from "../globalTypes";
+import { useSingleAd } from "./componentHooks/useSingleAd";
 
 interface SingleAdProps {
   _id: string;
@@ -19,7 +19,6 @@ interface SingleAdProps {
   isApproved?: boolean;
   creator?: User;
 }
-
 const SingleAd: React.FC<SingleAdProps> = ({
   image,
   price,
@@ -32,12 +31,10 @@ const SingleAd: React.FC<SingleAdProps> = ({
   isRow,
   smallImage,
   isApproved,
-  creator,
 }) => {
   const { get } = useSingleAd(_id, featuredAdId, iconType);
   const navigation = useNavigation();
   const width = Dimensions.get("window").width;
-
   return (
     <View
       className={`px-2 py-2  ${themeRenderer("bg-stone-900", "bg-white")} m-1 ${
@@ -85,7 +82,6 @@ const SingleAd: React.FC<SingleAdProps> = ({
             {title}
           </Text>
         </TouchableOpacity>
-
         <View
           className={`${
             isRow ? "flex-col items-start" : "flex-row justify-between"
@@ -128,5 +124,4 @@ const SingleAd: React.FC<SingleAdProps> = ({
     </View>
   );
 };
-
 export default SingleAd;

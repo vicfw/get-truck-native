@@ -1,4 +1,3 @@
-import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   DarkTheme,
@@ -6,10 +5,9 @@ import {
   NavigationContainer,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as React from "react";
-import { ColorSchemeName } from "react-native";
-
 import { Icon } from "@rneui/themed";
+import * as React from "react";
+import { ColorSchemeName, Image, View } from "react-native";
 import { OverflowMenuProvider } from "react-navigation-header-buttons";
 import Colors from "../constants/Colors";
 import {
@@ -38,46 +36,17 @@ import { HomeStackScreen } from "./HomeStack";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { PostAdStackScreen } from "./PostAdStack";
 import { ProfileStackScreen } from "./ProfileStack";
-import * as SplashScreen from "expo-splash-screen";
+import { themeRenderer } from "../constants/Common";
 
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
-  React.useEffect(() => {
-    (async () => {
-      try {
-        console.log("Preventing auto hide of splash screen...");
-        await SplashScreen.preventAutoHideAsync();
-        console.log("Splash screen auto hide prevented successfully.");
-
-        // Rest of your code...
-      } catch (e) {
-        console.error("Error preventing splash screen auto hide:", e);
-      }
-    })();
-  }, []);
-  return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
-      <OverflowMenuProvider>
-        <RootNavigator />
-      </OverflowMenuProvider>
-    </NavigationContainer>
-  );
-}
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
   const dispatch = useAppDispatch();
   const { isSignedIn, token: tokenInState } = useAppSelector(
     (state) => state.user
   );
-
   React.useEffect(() => {
     (async () => {
       try {
@@ -106,6 +75,30 @@ function RootNavigator() {
     })();
   }, []);
 
+  return (
+    <NavigationContainer
+      linking={LinkingConfiguration}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <OverflowMenuProvider>
+        {isSignedIn ? (
+          <RootNavigator />
+        ) : (
+          <View
+            style={{
+              flex: 0,
+              height: 0,
+            }}
+          />
+        )}
+      </OverflowMenuProvider>
+    </NavigationContainer>
+  );
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+function RootNavigator() {
+  const { isSignedIn } = useAppSelector((state) => state.user);
   return (
     <Stack.Navigator initialRouteName="Login">
       {isSignedIn ? (
@@ -184,10 +177,6 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
@@ -267,6 +256,7 @@ function BottomTabNavigator() {
         component={Features}
         options={{
           tabBarShowLabel: false,
+          headerStyle: { backgroundColor: Colors.main },
           headerTitleAlign: "center",
           tabBarIcon: ({ focused }) =>
             focused ? (
@@ -317,14 +307,4 @@ function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
-}
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
